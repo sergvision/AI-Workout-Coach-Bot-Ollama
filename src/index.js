@@ -2,8 +2,23 @@ import { Telegraf } from "telegraf";
 import dotenv from "dotenv";
 import { GoogleGenAI } from "@google/genai";
 import { google } from "googleapis";
+import { Logtail } from "@logtail/node";
 
 dotenv.config();
+const logtail = process.env.BETTERSTACK_SOURCE_TOKEN
+  ? new Logtail(process.env.BETTERSTACK_SOURCE_TOKEN)
+  : null;
+
+function logInfo(message) {
+  console.log(message);
+  logtail?.log(message, "info");
+}
+
+function logError(message) {
+  console.error(message);
+  logtail?.log(message, "error");
+}
+
 
 // Check environment variables
 if (!process.env.BOT_TOKEN) {
