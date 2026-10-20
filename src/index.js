@@ -1343,3 +1343,4 @@ testGoogleSheetsConnection().catch(error => {
 bot.launch();
 
 console.log("🤖 AI Workout Coach is running...");
+logInfo("AI Workout Coach started successfully");
